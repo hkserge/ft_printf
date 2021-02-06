@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/02 22:40:32 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/05 22:53:59 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 int		ft_exec_c(va_list arg)
 {
 	ft_putchar(va_arg(arg, int));
-
 	return (1);
 }

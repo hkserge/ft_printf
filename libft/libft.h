@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 13:40:59 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/02 23:38:48 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/06 05:07:33 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				**ft_split(char const *s, char c);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char				*ft_itoa(int n);
+char				*ft_itoa(long int n);
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **alst, t_list *newlst);
 int					ft_lstsize(t_list *lst);
@@ -70,5 +70,7 @@ void				ft_putstr(const char *str);
 void				ft_putchar(char c);
 void				ft_putnbr(int n);
 char				*ft_utoa(unsigned int n);
+char				*ft_convert_base(char *nbr, char *base_from, char *base_to);
+char				*convert_number(long long nbr, char *base);
 
 #endif

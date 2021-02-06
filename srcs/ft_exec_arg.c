@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:36:25 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/02 23:56:58 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/06 05:48:56 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int			ft_exec_arg(char *str, va_list arg, int *i)
 			size = ft_exec_d_i_u(arg, str[0] == 'u');
 		if (str[0] == 's')
 			size = ft_exec_s(arg);
-
+		if (str[0] == 'p')
+			size = ft_exec_p(arg);
+		if (str[0] == 'x' || str[0] == 'X')
+			size = ft_exec_x(arg, str[0] == 'X');
 		*i += 1;
 		return (size);
 	}

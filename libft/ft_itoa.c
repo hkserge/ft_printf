@@ -6,15 +6,15 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 18:22:40 by khelegbe          #+#    #+#             */
-/*   Updated: 2020/12/23 21:34:23 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/05 17:28:38 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_count_digits(long nb)
+static int		ft_count_digits(long int nb)
 {
-	long	len;
+	int		len;
 
 	len = 0;
 	if (nb <= 0)
@@ -30,11 +30,11 @@ static int		ft_count_digits(long nb)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(long int n)
 {
-	char	*str;
-	long	nbr;
-	int		len;
+	char		*str;
+	long int	nbr;
+	int			len;
 
 	nbr = n;
 	str = 0;

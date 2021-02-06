@@ -6,7 +6,7 @@
 #    By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 17:16:42 by khelegbe          #+#    #+#              #
-#    Updated: 2021/02/02 23:50:55 by khelegbe         ###   ########.fr        #
+#    Updated: 2021/02/06 05:42:12 by khelegbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,11 @@ SRCS		=	srcs/ft_printf.c \
 				srcs/ft_exec_arg.c \
 				srcs/ft_exec_c.c \
 				srcs/ft_exec_d_i_u.c \
-				srcs/ft_exec_s.c
+				srcs/ft_exec_s.c \
+				srcs/ft_exec_p.c \
+				srcs/ft_exec_x.c \
+				srcs/ft_convert_hex.c
+
 
 HEADERS		=	-I include -I libft
 
@@ -41,10 +45,13 @@ $(NAME) :		${OBJECTS}
 clean:
 				@make -C libft clean
 				@rm -rf ${OBJECTS}
+				@printf "\033[92mclean done\n\033[0m"
+
 
 fclean:			clean
 				@make -C libft fclean
 				@rm -rf $(NAME)
+
 
 re:				fclean all
 

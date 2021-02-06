@@ -6,7 +6,7 @@
 #    By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/15 21:29:42 by khelegbe          #+#    #+#              #
-#    Updated: 2021/02/03 00:03:49 by khelegbe         ###   ########.fr        #
+#    Updated: 2021/02/06 04:53:32 by khelegbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS		=	ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c ft_split.c \
 				ft_putstr_fd.c ft_strjoin.c ft_strmapi.c ft_strtrim.c \
 				ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 				ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
-				ft_putstr.c ft_putchar.c ft_putnbr.c ft_utoa.c
+				ft_putstr.c ft_putchar.c ft_putnbr.c ft_utoa.c ft_convert_base.c \
+				ft_convert_base2.c
 
 HEADERS		=	.
 
