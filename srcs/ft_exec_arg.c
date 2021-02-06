@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:36:25 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/06 05:48:56 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/06 20:43:27 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ int			ft_exec_arg(char *str, va_list arg, int *i)
 			size = ft_exec_p(arg);
 		if (str[0] == 'x' || str[0] == 'X')
 			size = ft_exec_x(arg, str[0] == 'X');
+		if (str[0] == '%')
+		{
+			ft_putchar('%');
+			size += 1;
+		}
 		*i += 1;
 		return (size);
 	}
-	ft_putchar('%');
 	return (1);
 }
