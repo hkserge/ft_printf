@@ -6,17 +6,11 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:58:33 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/06 04:38:51 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/07 02:03:56 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// long long		ft_base_size(char *base);
-// int				ft_get_new_size(long long nbr, long long base_size);
-// char			*ft_create_tab(long long nbr, char *base, int i_neg, int size);
-// char			*ft_reverse_tab(char *tab);
-// char			*convert_number(long long nbr, char *base);
 
 long long		ft_translatebase(char *str, char *base, int i, int size)
 {

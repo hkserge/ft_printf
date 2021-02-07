@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 05:13:07 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/06 06:01:54 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/07 02:03:26 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_exec_x(va_list arg, int is_caps)
 	char			*out;
 	char			*temp;
 
-	temp =  ft_utoa(va_arg(arg, unsigned int));
+	temp = ft_utoa(va_arg(arg, unsigned int));
 	if (is_caps)
 		out = ft_convert_base(temp, "0123456789", "0123456789ABCDEF");
 	else

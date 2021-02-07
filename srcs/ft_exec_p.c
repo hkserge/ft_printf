@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 23:15:34 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/05 17:15:31 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/06 22:37:56 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int		ft_exec_p(va_list arg)
 	char				*address;
 
 	out = ((long int)va_arg(arg, long int));
+	if (!out)
+	{
+		ft_putstr("(nil)");
+		return ((int)ft_strlen("(nil)"));
+	}
 	address = ft_convert_hex(out, "0123456789abcdef");
 	ft_putstr("0x");
 	ft_putstr(address);
