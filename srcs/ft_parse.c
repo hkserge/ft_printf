@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/08 01:35:34 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:17:41 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int			ft_treat_args(char *str, va_list arg, t_prec *prec, int *j)
 	if (str[i] == 'c')
 		len += ft_exec_c(arg, str[i] == '%', prec);
 	else if (str[i] == 'd' || str[i] == 'i' || str[i] == 'u')
-		len += ft_exec_d_i_u(arg, str[i] == 'u');
+		len += ft_exec_d_i_u(arg, str[i] == 'u', prec);
 	else if (str[i] == 's')
 		len += ft_exec_s(arg);
 	else if (str[i] == 'p')
@@ -88,12 +88,18 @@ int					ft_parse(char *str, va_list arg, t_prec *prec)
 		if (str[i] == '%')
 		{
 			i++;
-			while (ft_strchr("cspdiuxX%-0123456789.*", str[i]))
+			while (ft_strchr("cspdiuxX%-0123456789.*", str[i]) && str[i])
 			{
 				if (ft_strchr("-0123456789.*", str[i]))
 					prec = ft_get_precision(arg, str + i, &i);
-				len += ft_treat_args(str, arg, prec, &i);
+				if (str[i] == '%')
+				{
+					len += ft_exec_c(arg, 1, prec);
+				}
+				else
+					len += ft_treat_args(str, arg, prec, &i);
 				i++;
+				// break;
 			}
 		}
 		else

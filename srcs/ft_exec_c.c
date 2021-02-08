@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/08 01:25:51 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/08 16:27:05 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,18 @@ int			ft_exec_c(va_list arg, int is_percent, t_prec *prec)
 		}
 		return (out);
 	}
-	if (prec)
+	else
 	{
-		out = ft_treat_prec(arg, prec);
-		free(prec);
-		prec = 0;
+		if (prec)
+		{
+			out = ft_treat_prec(arg, prec);
+			free(prec);
+			prec = 0;
+		}
+		else
+		{
+			ft_putchar(va_arg(arg, int));
+		}
 	}
 	return (out);
 }
