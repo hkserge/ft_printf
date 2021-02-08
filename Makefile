@@ -6,7 +6,7 @@
 #    By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 17:16:42 by khelegbe          #+#    #+#              #
-#    Updated: 2021/02/06 05:42:12 by khelegbe         ###   ########.fr        #
+#    Updated: 2021/02/08 01:36:36 by khelegbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,13 @@ NAME		=	libftprintf.a
 
 SRCS		=	srcs/ft_printf.c \
 				srcs/ft_parse.c \
-				srcs/ft_exec_arg.c \
 				srcs/ft_exec_c.c \
 				srcs/ft_exec_d_i_u.c \
 				srcs/ft_exec_s.c \
 				srcs/ft_exec_p.c \
 				srcs/ft_exec_x.c \
-				srcs/ft_convert_hex.c
+				srcs/ft_convert_hex.c \
+				srcs/ft_utils.c
 
 
 HEADERS		=	-I include -I libft
