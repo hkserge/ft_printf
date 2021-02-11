@@ -6,7 +6,7 @@
 #    By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 17:16:42 by khelegbe          #+#    #+#              #
-#    Updated: 2021/02/08 01:36:36 by khelegbe         ###   ########.fr        #
+#    Updated: 2021/02/11 14:57:04 by khelegbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,16 @@ all:			$(NAME)
 .c.o:
 				@${CC} ${FLAGS} ${HEADERS} -c $< -o ${<:.c=.o}
 
-$(NAME) :		${OBJECTS}
+$(NAME) 	:	${OBJECTS}
 				@make -C libft
 				@cp libft/libft.a ${NAME}
 				@ar rcs ${NAME} ${OBJECTS}
 				@printf "\033[92mft_printf compiled\n\033[0m"
+
+debug		:
+				@make
+				clang main.c libftprintf.a -I include -I libft -g
+				./a.out
 
 clean:
 				@make -C libft clean

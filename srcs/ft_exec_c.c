@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/08 16:27:05 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:45:16 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_treat_prec(va_list arg, t_prec *prec)
 	return (out);
 }
 
-int			ft_exec_c(va_list arg, int is_percent, t_prec *prec)
+int			ft_exec_c(va_list arg, int is_percent, t_prec **prec)
 {
 	int		out;
 
@@ -49,10 +49,10 @@ int			ft_exec_c(va_list arg, int is_percent, t_prec *prec)
 	}
 	else
 	{
-		if (prec)
+		if (*prec)
 		{
-			out = ft_treat_prec(arg, prec);
-			free(prec);
+			out = ft_treat_prec(arg, *prec);
+			free(*prec);
 			prec = 0;
 		}
 		else

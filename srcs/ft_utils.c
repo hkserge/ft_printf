@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 01:15:09 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/08 16:02:27 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:40:27 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			ft_print_charnb(int nb, char c)
 	return (i);
 }
 
-int			ft_print_error(char *str, int i, t_prec *prec)
+int			ft_print_error(char *str, int i, t_prec **prec)
 {
 	int	j;
 	int size;
@@ -40,24 +40,21 @@ int			ft_print_error(char *str, int i, t_prec *prec)
 		j++;
 		size++;
 	}
-	if (prec)
+	if (*prec)
 	{
-		free(prec);
-		prec = 0;
+		free(*prec);
+		*prec = 0;
 	}
 	return (size);
 }
 
-t_prec		*ft_init_prec(void)
+void		ft_init_prec(t_prec **prec)
 {
-	t_prec *prec;
-
-	prec = malloc(sizeof(t_prec));
-	if (!prec)
-		return (0);
-	prec->minus = 0;
-	prec->precision = -1;
-	prec->width = 0;
-	prec->zero = 0;
-	return (prec);
+	*prec = malloc(sizeof(t_prec));
+	if (!*prec)
+		return ;
+	(*prec)->minus = 0;
+	(*prec)->precision = -1;
+	(*prec)->width = 0;
+	(*prec)->zero = 0;
 }
