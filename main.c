@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:27:26 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/11 16:08:56 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/17 17:29:49 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	main()
 {
 	int	myprf = 0;
 	int	prf = 0;
+	char *s = "_%0-8.3d_\n";
 
-	myprf = ft_printf("_%05d_\n", 5);
-	prf = printf("_%05d_\n", 5);
+	myprf = ft_printf(s, 33);
+	prf = printf(s, 33);
 
-	printf("Myprf = %d\n", myprf);
-	printf("prf = %d\n", prf);
+	printf(myprf == prf ? "ok\n" : "myprf = %d\nprf = %d\n", myprf, prf);
 	return (0);
 }

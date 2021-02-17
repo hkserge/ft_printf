@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/11 14:39:42 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/17 17:33:06 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int			ft_print_char(char c, int *i)
 
 static int			ft_get_star_arg(va_list arg, char *str)
 {
+	while (*str == '-' || *str == '0')
+		str++;
 	if (str[0] == '*')
 		return (va_arg(arg, int));
 	return (ft_atoi(str));
@@ -32,18 +34,16 @@ static t_prec		*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 
 	j = 0;
 	ft_init_prec(&prec);
-	if (str[j] == '-')
+	while (str[j] == '-' || str[j] == '0')
 	{
-		prec->minus = 1;
-		j++;
-	}
-	if (str[j] == '0' && prec->minus == 0)
-	{
-		prec->zero = 1;
+		if (str[j] == '-')
+			prec->minus = 1;
+		if (str[j] == '0' && prec->minus == 0)
+			prec->zero = 1;
 		j++;
 	}
 	prec->width = ft_get_star_arg(arg, str + j);
-	while (ft_isdigit(str[j]) || str[j] == '*')
+	while (ft_isdigit(str[j]) || str[j] == '*' || str[j] == '-')
 		j++;
 	if (str[j] == '.')
 		prec->precision = ft_get_star_arg(arg, str + ++j);
@@ -57,9 +57,11 @@ static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 {
 	int	i;
 	int len;
+	char c;
 
 	i = *j;
 	len = 0;
+	c = str[i];
 	if (str[i] == 'c' || str[i] == '%')
 		len += ft_exec_c(arg, str[i] == '%', prec);
 	else if (str[i] == 'd' || str[i] == 'i' || str[i] == 'u')
@@ -87,9 +89,9 @@ int					ft_parse(char *str, va_list arg, t_prec *prec)
 		if (str[i] == '%')
 		{
 			i++;
-			if (ft_strchr("cspdiuxX%-0123456789.*", str[i]) && str[i])
+			if (ft_strchr("cspdiuxX%-+0123456789.*", str[i]) && str[i])
 			{
-				if (ft_strchr("-0123456789.*", str[i]))
+				if (ft_strchr("-+0123456789.*", str[i]))
 					prec = ft_get_precision(prec, arg, str + i, &i);
 				len += ft_treat_args(str, arg, &prec, &i);
 				i++;
