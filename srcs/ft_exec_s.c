@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 23:48:52 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/20 01:02:01 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/20 03:12:27 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,25 @@ static int	ft_treat_prec(t_prec *prec, char *out, int is_null)
 	int		nb_space;
 	int		len;
 	int		total;
+	int		to_print;
 
 	total = 0;
+	to_print = len;
+	if (prec->precision < len && prec->precision != -1)
+		to_print = prec->precision;
 	len = (int)ft_strlen(out);
 	if (is_null)
 		return (ft_out_is_null(prec, out, len));
 	nb_space = ft_space_nb(prec, len);
 	if (prec->minus)
 	{
-		total += ft_print_strnb(prec->precision, out);
+		total += ft_print_strnb(to_print, out);
 		total += ft_print_charnb(nb_space, ' ');
 	}
 	else
 	{
 		total += ft_print_charnb(nb_space, ' ');
-		total += ft_print_strnb(prec->precision, out);
+		total += ft_print_strnb(to_print, out);
 	}
 	return (total);
 }
