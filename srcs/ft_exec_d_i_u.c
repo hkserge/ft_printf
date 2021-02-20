@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 22:43:34 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/17 17:29:21 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/18 18:29:50 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ int				ft_exec_d_i_u(va_list arg, int is_unsigned, t_prec **prec)
 		ft_putstr(out);
 		len = (int)ft_strlen(out);
 	}
+	if (out)
+		free(out);
 	return (len);
 }

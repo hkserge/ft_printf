@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/17 17:33:06 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/19 23:53:19 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 	else if (str[i] == 'd' || str[i] == 'i' || str[i] == 'u')
 		len += ft_exec_d_i_u(arg, str[i] == 'u', prec);
 	else if (str[i] == 's')
-		len += ft_exec_s(arg);
+		len += ft_exec_s(arg, prec);
 	else if (str[i] == 'p')
 		len += ft_exec_p(arg);
 	else if (str[i] == 'x' || str[i] == 'X')
@@ -81,6 +81,7 @@ int					ft_parse(char *str, va_list arg, t_prec *prec)
 {
 	int	len;
 	int	i;
+	char	c;
 
 	len = 0;
 	i = 0;
@@ -95,6 +96,7 @@ int					ft_parse(char *str, va_list arg, t_prec *prec)
 					prec = ft_get_precision(prec, arg, str + i, &i);
 				len += ft_treat_args(str, arg, &prec, &i);
 				i++;
+				c = str[i];
 			}
 		}
 		else

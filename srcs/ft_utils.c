@@ -6,11 +6,24 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 01:15:09 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/11 14:40:27 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/20 01:14:45 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int			ft_print_strnb(int nb, char *s)
+{
+	int		i;
+
+	i = 0;
+	while (s[i] && i < nb)
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	return (i);
+}
 
 int			ft_print_charnb(int nb, char c)
 {
@@ -36,6 +49,13 @@ int			ft_print_error(char *str, int i, t_prec **prec)
 		j--;
 	while (j <= i)
 	{
+		if (str[j] == '.' && ft_atoi(str + j + 1) < 0)
+		{
+			ft_putchar('.');
+			ft_putchar('0');
+			j += 1;
+			size += 2;
+		}
 		ft_putchar(str[j]);
 		j++;
 		size++;
