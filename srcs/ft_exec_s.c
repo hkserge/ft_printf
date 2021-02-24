@@ -6,50 +6,53 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 23:48:52 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/20 03:29:10 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:47:32 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_out_is_null(t_prec *prec, char *out, int len)
+static int	ft_is_minus(t_prec *prec, int nb_space, int to_print, char *out)
 {
-	int		nb_space;
+	int total;
 
-	nb_space = prec->width;
-	if (prec->precision >= len)
-		if (prec->width > len)
-			nb_space = prec->width - len;
+	total = 0;
 	if (prec->minus)
 	{
-		if (prec->precision >= len)
-			ft_putstr(out);
-		ft_print_charnb(nb_space, ' ');
+		total += ft_print_strnb(to_print, out);
+		if (!prec->zero)
+			total += ft_print_charnb(nb_space, ' ');
+		else
+			total += ft_print_charnb(nb_space, '0');
 	}
 	else
 	{
-		ft_print_charnb(nb_space, ' ');
-		if (prec->precision >= len)
-			ft_putstr(out);
+		if (!prec->zero)
+			total += ft_print_charnb(nb_space, ' ');
+		else
+			total += ft_print_charnb(nb_space, '0');
+		total += ft_print_strnb(to_print, out);
 	}
-	if (prec->precision < len)
-		return (nb_space);
-	return (nb_space + len);
+	return (total);
 }
 
 static int	ft_space_nb(t_prec *prec, int len)
 {
 	int		nb_space;
+	int		prec_space_nb;
 
 	nb_space = 0;
-	if (prec->width > len)
-		nb_space = prec->width - len;
-	if (prec->precision < len && prec->precision != -1)
-		nb_space += len - prec->precision;
+	prec_space_nb = 0;
+	if (prec->width > prec->precision && len
+	< prec->precision && prec->precision != -1)
+		prec_space_nb = prec->precision - len;
+	nb_space = prec->width - len + prec_space_nb;
+	if (prec->width > prec->precision && prec->precision != -1)
+		nb_space = prec->width - prec->precision + prec_space_nb;
 	return (nb_space);
 }
 
-static int	ft_treat_prec(t_prec *prec, char *out, int is_null)
+static int	ft_treat_prec(t_prec *prec, char *out)
 {
 	int		nb_space;
 	int		len;
@@ -58,23 +61,11 @@ static int	ft_treat_prec(t_prec *prec, char *out, int is_null)
 
 	total = 0;
 	len = (int)ft_strlen(out);
+	to_print = len;
 	if (prec->precision < len && prec->precision != -1)
 		to_print = prec->precision;
-	to_print = len;
-	if (is_null)
-		return (ft_out_is_null(prec, out, len));
 	nb_space = ft_space_nb(prec, len);
-	if (prec->minus)
-	{
-		total += ft_print_strnb(to_print, out);
-		total += ft_print_charnb(nb_space, ' ');
-	}
-	else
-	{
-		total += ft_print_charnb(nb_space, ' ');
-		total += ft_print_strnb(to_print, out);
-	}
-	return (total);
+	return (ft_is_minus(prec, nb_space, to_print, out));
 }
 
 int			ft_exec_s(va_list arg, t_prec **prec)
@@ -92,7 +83,7 @@ int			ft_exec_s(va_list arg, t_prec **prec)
 	}
 	if (*prec)
 	{
-		len = ft_treat_prec(*prec, out, is_null);
+		len = ft_treat_prec(*prec, out);
 		free(*prec);
 		*prec = 0;
 	}

@@ -6,11 +6,42 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 22:43:34 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/18 18:29:50 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/24 16:09:13 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void		ft_is_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
+{
+	if (str[0] == '-')
+		ft_print_charnb(1, '-');
+	if (prec->precision)
+		ft_print_charnb(nb_zeros, '0');
+	if (prec->precision != 0)
+		ft_putstr(str + (str[0] == '-'));
+	ft_print_charnb(space_nb + (prec->precision == 0), ' ');
+}
+
+static void		ft_no_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
+{
+	if (prec->zero && prec->precision == -1)
+	{
+		if (str[0] == '-')
+			ft_print_charnb(1, '-');
+		ft_print_charnb(space_nb, '0');
+	}
+	else
+	{
+		ft_print_charnb(space_nb + (prec->precision == 0), ' ');
+		if (str[0] == '-')
+			ft_print_charnb(1, '-');
+	}
+	if (prec->precision)
+		ft_print_charnb(nb_zeros, '0');
+	if (prec->precision != 0)
+		ft_putstr(str + (str[0] == '-'));
+}
 
 static int		ft_get_prec_prec(char *str, t_prec *prec)
 {
@@ -21,27 +52,19 @@ static int		ft_get_prec_prec(char *str, t_prec *prec)
 	len = (int)ft_strlen(str);
 	nb_zeros = 0;
 	space_nb = 0;
-	if (prec->precision > -1 && (int)ft_strlen(str) <= prec->precision)
+	if (str[0] == '0')
+		len = 0;
+	if (prec->precision > -1 && (int)ft_strlen(str) < prec->precision)
 		nb_zeros = prec->precision - (int)ft_strlen(str) + (str[0] == '-');
 	if (prec->width >= len + nb_zeros)
-		space_nb = prec->width - len - nb_zeros;
+		space_nb = prec->width - len - nb_zeros - (str[0] == '0');
 	if (prec->minus)
 	{
-		if (str[0] == '-')
-			ft_print_charnb(1, '-');
-		if (prec->precision)
-			ft_print_charnb(nb_zeros, '0');
-		ft_putstr(str + (str[0] == '-'));
-		ft_print_charnb(space_nb, ' ');
+		ft_is_minus(prec, space_nb, nb_zeros, str);
 	}
 	else
 	{
-		ft_print_charnb(space_nb, ' ');
-		if (str[0] == '-')
-			ft_print_charnb(1, '-');
-		if (prec->precision)
-			ft_print_charnb(nb_zeros, '0');
-		ft_putstr(str + (str[0] == '-'));
+		ft_no_minus(prec, space_nb, nb_zeros, str);
 	}
 	return (space_nb + nb_zeros + (int)ft_strlen(str));
 }

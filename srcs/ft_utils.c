@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 01:15:09 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/20 01:14:45 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:49:53 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int			ft_print_charnb(int nb, char c)
 
 int			ft_print_error(char *str, int i, t_prec **prec)
 {
-	int	j;
-	int size;
+	int		j;
+	int		size;
 
 	j = i;
 	size = 0;
@@ -61,10 +61,7 @@ int			ft_print_error(char *str, int i, t_prec **prec)
 		size++;
 	}
 	if (*prec)
-	{
 		free(*prec);
-		*prec = 0;
-	}
 	return (size);
 }
 

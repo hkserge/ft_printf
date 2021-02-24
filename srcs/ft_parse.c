@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/19 23:53:19 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/02/24 12:05:02 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static t_prec		*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 
 static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 {
-	int	i;
-	int len;
-	char c;
+	int		i;
+	int		len;
+	char	c;
 
 	i = *j;
 	len = 0;
