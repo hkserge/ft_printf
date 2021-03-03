@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 23:15:34 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/03 17:26:33 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/03 17:32:37 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ static int	ft_is_minus(t_prec *prec, int nb_space, int to_print, char *address)
 		ft_putstr("0x");
 		total += ft_print_strnb(to_print, address);
 		if (!prec->zero)
-			total += ft_print_charnb(nb_space, ' ');
+			total += ft_print_charnb(nb_space - 2, ' ');
 		else
-			total += ft_print_charnb(nb_space, '0');
+			total += ft_print_charnb(nb_space - 2, '0');
 	}
 	else
 	{
 		if (!prec->zero)
 		{
-			total += ft_print_charnb(nb_space, ' ');
+			total += ft_print_charnb(nb_space - 2, ' ');
 			ft_putstr("0x");
 		}
 		else
 		{
 			ft_putstr("0x");
-			total += ft_print_charnb(nb_space, '0');
+			total += ft_print_charnb(nb_space - 2, '0');
 		}
 		total += ft_print_strnb(to_print, address);
 	}
