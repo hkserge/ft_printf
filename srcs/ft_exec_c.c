@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/03 16:26:42 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/03 16:33:24 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_is_percent(t_prec *prec)
 			total += ft_print_charnb(prec->width - 1, ' ');
 		else
 			total += ft_print_charnb(prec->width - 1, '0');
-		total += ft_print_strnb(0, "%");
+		total += ft_print_strnb(1, "%");
 	}
 	return (total);
 }
