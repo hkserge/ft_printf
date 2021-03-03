@@ -6,11 +6,35 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/19 22:59:18 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/03 16:26:42 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_is_percent(t_prec *prec)
+{
+	int total;
+
+	total = 0;
+	if (prec->minus)
+	{
+		total += ft_print_strnb(1, "%");
+		if (!prec->zero)
+			total += ft_print_charnb(prec->width - 1, ' ');
+		else
+			total += ft_print_charnb(prec->width - 1, '0');
+	}
+	else
+	{
+		if (!prec->zero)
+			total += ft_print_charnb(prec->width - 1, ' ');
+		else
+			total += ft_print_charnb(prec->width - 1, '0');
+		total += ft_print_strnb(0, "%");
+	}
+	return (total);
+}
 
 static int	ft_treat_prec(va_list arg, t_prec *prec)
 {
@@ -39,12 +63,14 @@ int			ft_exec_c(va_list arg, int is_percent, t_prec **prec)
 	out = 1;
 	if (is_percent)
 	{
-		ft_putchar('%');
 		if (*prec)
 		{
+			out = ft_is_percent(*prec);
 			free(*prec);
 			*prec = 0;
 		}
+		else
+			ft_putchar('%');
 		return (out);
 	}
 	else
