@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 23:48:52 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/24 14:47:32 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:36:17 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ static int	ft_treat_prec(t_prec *prec, char *out)
 {
 	int		nb_space;
 	int		len;
-	int		total;
 	int		to_print;
 
-	total = 0;
 	len = (int)ft_strlen(out);
 	to_print = len;
 	if (prec->precision < len && prec->precision != -1)
