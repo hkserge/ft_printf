@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/24 12:05:02 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/03 17:28:11 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 	else if (str[i] == 's')
 		len += ft_exec_s(arg, prec);
 	else if (str[i] == 'p')
-		len += ft_exec_p(arg);
+		len += ft_exec_p(arg, prec);
 	else if (str[i] == 'x' || str[i] == 'X')
 		len += ft_exec_x(arg, str[i] == 'X');
 	else
