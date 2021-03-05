@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/03 17:28:11 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/05 16:17:51 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,17 @@ static t_prec		*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 		j++;
 	}
 	prec->width = ft_get_star_arg(arg, str + j);
+	if(prec->width < 0)
+	{
+		prec->minus = 1;
+		prec->width *= -1;
+	}
 	while (ft_isdigit(str[j]) || str[j] == '*' || str[j] == '-')
 		j++;
 	if (str[j] == '.')
 		prec->precision = ft_get_star_arg(arg, str + ++j);
+	if(prec->precision < -1)
+		prec->precision = -1;
 	while (ft_isdigit(str[j]) || str[j] == '*')
 		j++;
 	*i += j;
@@ -71,7 +78,7 @@ static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 	else if (str[i] == 'p')
 		len += ft_exec_p(arg, prec);
 	else if (str[i] == 'x' || str[i] == 'X')
-		len += ft_exec_x(arg, str[i] == 'X');
+		len += ft_exec_x(arg, str[i] == 'X', prec);
 	else
 		len += ft_print_error(str, i, prec);
 	return (len);
@@ -79,13 +86,12 @@ static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 
 int					ft_parse(char *str, va_list arg, t_prec *prec)
 {
-	int	len;
-	int	i;
-	char	c;
+	int		len;
+	int		i;
 
 	len = 0;
 	i = 0;
-	while (str[i])
+	while (str[i] && i < (int)ft_strlen(str))
 	{
 		if (str[i] == '%')
 		{
@@ -96,7 +102,6 @@ int					ft_parse(char *str, va_list arg, t_prec *prec)
 					prec = ft_get_precision(prec, arg, str + i, &i);
 				len += ft_treat_args(str, arg, &prec, &i);
 				i++;
-				c = str[i];
 			}
 		}
 		else

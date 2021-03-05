@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 23:15:34 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/03 20:35:34 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/05 14:10:00 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 static void		ft_is_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
 {
-	if (str[0] == '-')
-		ft_print_charnb(1, '-');
-	if (prec->precision)
-		ft_print_charnb(nb_zeros, '0');
-	if (prec->precision != 0)
-		ft_putstr(str + (str[0] == '-'));
-	ft_print_charnb(space_nb + (prec->precision == 0), ' ');
+	ft_putstr("0x");
+	ft_print_charnb(nb_zeros, '0');
+	if (prec->precision != 0 && str != NULL)
+		ft_putstr(str);
+	ft_print_charnb(space_nb, ' ');
 }
 
 static void		ft_no_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
@@ -28,17 +26,16 @@ static void		ft_no_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
 	if (prec->zero && prec->precision == -1)
 	{
 		ft_putstr("0x");
-		ft_print_charnb(space_nb, '0');
+		ft_print_charnb(nb_zeros, '0');
 	}
 	else
 	{
 		ft_print_charnb(space_nb, ' ');
 		ft_putstr("0x");
-	}
-	if (prec->precision)
 		ft_print_charnb(nb_zeros, '0');
-	if (prec->precision != 0)
-		ft_putstr(str + (str[0] == '-'));
+	}
+	if (prec->precision != 0 && str != NULL)
+		ft_putstr(str);
 }
 
 static int		ft_get_prec_prec(char *str, t_prec *prec)
@@ -46,14 +43,18 @@ static int		ft_get_prec_prec(char *str, t_prec *prec)
 	int		space_nb;
 	int		nb_zeros;
 	int		len;
+	int		out_is_null;
 
-	len = (int)ft_strlen(str);
+	out_is_null = ft_strncmp(str, "0", 2);
+	len = (int)ft_strlen(str) + 2 - (out_is_null == 0 && prec->precision == 0);
 	nb_zeros = 0;
 	space_nb = 0;
-	if (prec->precision > -1 && (int)ft_strlen(str) < prec->precision)
+	if (prec->precision > -1 && len < prec->precision)
 		nb_zeros = prec->precision - (int)ft_strlen(str);
-	if (prec->width >= len + nb_zeros)
-		space_nb = prec->width - len - nb_zeros - (str[0] == '0') - 2;
+	if (prec->precision == -1 && prec->zero)
+		nb_zeros = prec->width - len;
+	if (prec->width > len + nb_zeros)
+		space_nb = prec->width - (len + nb_zeros);
 	if (prec->minus)
 	{
 		ft_is_minus(prec, space_nb, nb_zeros, str);
@@ -62,10 +63,10 @@ static int		ft_get_prec_prec(char *str, t_prec *prec)
 	{
 		ft_no_minus(prec, space_nb, nb_zeros, str);
 	}
-	return (space_nb + nb_zeros + (int)ft_strlen(str));
+	return (space_nb + nb_zeros + len);
 }
 
-int		ft_exec_p(va_list arg, t_prec **prec)
+int				ft_exec_p(va_list arg, t_prec **prec)
 {
 	long int			out;
 	char				*address;
@@ -89,5 +90,5 @@ int		ft_exec_p(va_list arg, t_prec **prec)
 		if (address)
 			free(address);
 	}
-	return (len + 2);
+	return (len);
 }
