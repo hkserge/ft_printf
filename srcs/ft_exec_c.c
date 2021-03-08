@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/08 22:23:59 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:27:30 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static int	ft_treat_prec(va_list arg, t_prec *prec)
 	if (prec->minus)
 	{
 		ft_putchar(va_arg(arg, int));
-		while (i-- >= 0)
+		while (i-- > 0)
 			ft_putchar(' ');
 	}
 	else
 	{
-		while (i-- >= 0)
+		while (i-- > 0)
 			ft_putchar(' ');
 		ft_putchar(va_arg(arg, int));
 	}
