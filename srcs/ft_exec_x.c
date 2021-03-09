@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 05:13:07 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/09 04:44:15 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:56:33 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,19 @@ static int		ft_get_prec_prec(char *str, t_prec *prec)
 	if (prec->width > len + nb_zeros)
 		space_nb = prec->width - (len + nb_zeros);
 	if (prec->minus)
-	{
 		ft_is_minus(prec, space_nb, nb_zeros, str);
-	}
 	else
-	{
 		ft_no_minus(prec, space_nb, nb_zeros, str);
-	}
 	return (space_nb + nb_zeros + len);
 }
 
 int				ft_exec_x(va_list arg, int is_caps, t_prec **prec)
 {
 	char			*out;
-	// char			*temp;
 	int				len;
-	int		out_is_null;
+	int				out_is_null;
 	long			var;
 
-	// temp = ft_utoa(va_arg(arg, unsigned int));
 	var = (unsigned int)va_arg(arg, unsigned int);
 	if (is_caps)
 		out = ft_convert_hex(var, "0123456789ABCDEF");
@@ -98,8 +92,6 @@ int				ft_exec_x(va_list arg, int is_caps, t_prec **prec)
 		ft_putstr(out);
 		len = (int)ft_strlen(out);
 	}
-	// if (temp)
-	// 	free(temp);
 	free(out);
 	return (len);
 }

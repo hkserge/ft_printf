@@ -6,20 +6,20 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/05 16:17:51 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:57:21 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int			ft_print_char(char c, int *i)
+static int		ft_print_char(char c, int *i)
 {
 	*i += 1;
 	ft_putchar(c);
 	return (1);
 }
 
-static int			ft_get_star_arg(va_list arg, char *str)
+static int		ft_get_star_arg(va_list arg, char *str)
 {
 	while (*str == '-' || *str == '0')
 		str++;
@@ -28,7 +28,7 @@ static int			ft_get_star_arg(va_list arg, char *str)
 	return (ft_atoi(str));
 }
 
-static t_prec		*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
+static t_prec	*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 {
 	int		j;
 
@@ -43,7 +43,7 @@ static t_prec		*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 		j++;
 	}
 	prec->width = ft_get_star_arg(arg, str + j);
-	if(prec->width < 0)
+	if (prec->width < 0)
 	{
 		prec->minus = 1;
 		prec->width *= -1;
@@ -52,7 +52,7 @@ static t_prec		*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 		j++;
 	if (str[j] == '.')
 		prec->precision = ft_get_star_arg(arg, str + ++j);
-	if(prec->precision < -1)
+	if (prec->precision < -1)
 		prec->precision = -1;
 	while (ft_isdigit(str[j]) || str[j] == '*')
 		j++;
@@ -60,7 +60,7 @@ static t_prec		*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 	return (prec);
 }
 
-static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
+static int		ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 {
 	int		i;
 	int		len;
@@ -84,7 +84,7 @@ static int			ft_treat_args(char *str, va_list arg, t_prec **prec, int *j)
 	return (len);
 }
 
-int					ft_parse(char *str, va_list arg, t_prec *prec)
+int				ft_parse(char *str, va_list arg, t_prec *prec)
 {
 	int		len;
 	int		i;
