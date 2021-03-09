@@ -6,11 +6,18 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 01:15:09 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/05 12:48:22 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:17:17 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int			ft_print_char(char c, int *i)
+{
+	*i += 1;
+	ft_putchar(c);
+	return (1);
+}
 
 int			ft_print_strnb(int nb, char *s)
 {

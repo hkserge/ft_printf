@@ -6,18 +6,11 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 20:51:53 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/09 12:57:21 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:16:03 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int		ft_print_char(char c, int *i)
-{
-	*i += 1;
-	ft_putchar(c);
-	return (1);
-}
 
 static int		ft_get_star_arg(va_list arg, char *str)
 {
@@ -26,6 +19,16 @@ static int		ft_get_star_arg(va_list arg, char *str)
 	if (str[0] == '*')
 		return (va_arg(arg, int));
 	return (ft_atoi(str));
+}
+
+static void		ft_gprec2(t_prec *prec, va_list arg, char *str, int j)
+{
+	prec->width = ft_get_star_arg(arg, str + j);
+	if (prec->width < 0)
+	{
+		prec->minus = 1;
+		prec->width *= -1;
+	}
 }
 
 static t_prec	*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
@@ -42,12 +45,7 @@ static t_prec	*ft_get_precision(t_prec *prec, va_list arg, char *str, int *i)
 			prec->zero = 1;
 		j++;
 	}
-	prec->width = ft_get_star_arg(arg, str + j);
-	if (prec->width < 0)
-	{
-		prec->minus = 1;
-		prec->width *= -1;
-	}
+	ft_gprec2(prec, arg, str, j);
 	while (ft_isdigit(str[j]) || str[j] == '*' || str[j] == '-')
 		j++;
 	if (str[j] == '.')

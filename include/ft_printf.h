@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:06:22 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/05 14:12:48 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:05:42 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int				ft_print_error(char *str, int i, t_prec **prec);
 void			ft_init_prec(t_prec **prec);
 int				ft_print_charnb(int nb, char c);
 int				ft_print_strnb(int nb, char *s);
+int				ft_print_char(char c, int *i);
+
 
 #endif

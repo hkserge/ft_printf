@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/08 22:27:30 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:18:03 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int			ft_exec_c(va_list arg, int is_percent, t_prec **prec)
 		{
 			out = ft_is_percent(*prec);
 			free(*prec);
-			*prec = 0;
 		}
 		else
 			ft_putchar('%');
@@ -81,12 +80,9 @@ int			ft_exec_c(va_list arg, int is_percent, t_prec **prec)
 		{
 			out = ft_treat_prec(arg, *prec);
 			free(*prec);
-			*prec = 0;
 		}
 		else
-		{
 			ft_putchar(va_arg(arg, int));
-		}
 	}
 	return (out);
 }
