@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 22:43:34 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/24 16:09:13 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 17:00:19 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 
 static void		ft_is_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
 {
+	int		is_null;
+
+	is_null = ft_strncmp(str, "0", 2);
 	if (str[0] == '-')
 		ft_print_charnb(1, '-');
 	if (prec->precision)
 		ft_print_charnb(nb_zeros, '0');
 	if (prec->precision != 0)
 		ft_putstr(str + (str[0] == '-'));
-	ft_print_charnb(space_nb + (prec->precision == 0), ' ');
+	ft_print_charnb(space_nb + (prec->precision == 0 && !is_null), ' ');
 }
 
 static void		ft_no_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
 {
+	int		is_null;
+
+	is_null = ft_strncmp(str, "0", 2);
 	if (prec->zero && prec->precision == -1)
 	{
 		if (str[0] == '-')
@@ -33,7 +39,7 @@ static void		ft_no_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
 	}
 	else
 	{
-		ft_print_charnb(space_nb + (prec->precision == 0), ' ');
+		ft_print_charnb(space_nb + (prec->precision == 0 && !is_null), ' ');
 		if (str[0] == '-')
 			ft_print_charnb(1, '-');
 	}
@@ -54,7 +60,7 @@ static int		ft_get_prec_prec(char *str, t_prec *prec)
 	space_nb = 0;
 	if (str[0] == '0')
 		len = 0;
-	if (prec->precision > -1 && (int)ft_strlen(str) < prec->precision)
+	if ((int)ft_strlen(str + (str[0] == '-')) < prec->precision)
 		nb_zeros = prec->precision - (int)ft_strlen(str) + (str[0] == '-');
 	if (prec->width >= len + nb_zeros)
 		space_nb = prec->width - len - nb_zeros - (str[0] == '0');
