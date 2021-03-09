@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:58:13 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/02/06 04:38:54 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 04:51:25 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ char			*convert_number(long long nbr, char *base)
 	int			i_neg;
 	long long	base_size;
 	int			nbr_size;
+	char		*new_tab;
+	char		*reversed_tab;
 
 	i_neg = 0;
 	if (nbr < 0)
@@ -101,5 +103,8 @@ char			*convert_number(long long nbr, char *base)
 	}
 	base_size = ft_base_size(base);
 	nbr_size = ft_get_new_size(nbr, base_size);
-	return (ft_reverse_tab(ft_create_tab(nbr, base, i_neg, nbr_size)));
+	new_tab = ft_create_tab(nbr, base, i_neg, nbr_size);
+	reversed_tab = ft_reverse_tab(new_tab);
+	free(new_tab);
+	return (reversed_tab);
 }

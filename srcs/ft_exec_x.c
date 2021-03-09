@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 05:13:07 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/05 16:12:20 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/09 04:44:15 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static void		ft_is_minus(t_prec *prec, int space_nb, int nb_zeros, char *str)
 	int		out_is_null;
 
 	out_is_null = ft_strncmp(str, "0", 2);
-	// if (out_is_null == 0 && prec->precision == 0 && prec->width)
-	// 	space_nb += 1;
 	ft_print_charnb(nb_zeros, '0');
 	if (!(prec->precision == 0 && out_is_null == 0))
 		ft_putstr(str);
@@ -78,15 +76,17 @@ static int		ft_get_prec_prec(char *str, t_prec *prec)
 int				ft_exec_x(va_list arg, int is_caps, t_prec **prec)
 {
 	char			*out;
-	char			*temp;
+	// char			*temp;
 	int				len;
 	int		out_is_null;
+	long			var;
 
-	temp = ft_utoa(va_arg(arg, unsigned int));
+	// temp = ft_utoa(va_arg(arg, unsigned int));
+	var = (unsigned int)va_arg(arg, unsigned int);
 	if (is_caps)
-		out = ft_convert_base(temp, "0123456789", "0123456789ABCDEF");
+		out = ft_convert_hex(var, "0123456789ABCDEF");
 	else
-		out = ft_convert_base(temp, "0123456789", "0123456789abcdef");
+		out = ft_convert_hex(var, "0123456789abcdef");
 	out_is_null = ft_strncmp(out, "0", 2);
 	if (*prec)
 	{
@@ -98,9 +98,8 @@ int				ft_exec_x(va_list arg, int is_caps, t_prec **prec)
 		ft_putstr(out);
 		len = (int)ft_strlen(out);
 	}
-	if (temp)
-		free(temp);
-	if (out)
-		free(out);
+	// if (temp)
+	// 	free(temp);
+	free(out);
 	return (len);
 }
