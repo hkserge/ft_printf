@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 23:15:34 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/05 14:10:00 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:22:09 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static int		ft_get_prec_prec(char *str, t_prec *prec)
 	{
 		ft_no_minus(prec, space_nb, nb_zeros, str);
 	}
+	if (nb_zeros < 0)
+		nb_zeros = 0;
 	return (space_nb + nb_zeros + len);
 }
 
