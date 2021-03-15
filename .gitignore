@@ -1,9 +1,0 @@
-42TESTER-PRINTF
-*.out
-*.o
-**.o
-*/**.o
-*.a
-*/**.a
-pft*
-*test*
