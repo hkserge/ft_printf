@@ -6,7 +6,7 @@
 /*   By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:43:27 by khelegbe          #+#    #+#             */
-/*   Updated: 2021/03/09 13:18:03 by khelegbe         ###   ########.fr       */
+/*   Updated: 2021/03/16 15:27:57 by khelegbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_treat_prec(va_list arg, t_prec *prec)
 	int		out;
 	int		i;
 
-	out = prec->width;
+	out = prec->width + (prec->width == 0);
 	i = prec->width - 1;
 	if (prec->minus)
 	{

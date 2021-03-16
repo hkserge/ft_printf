@@ -6,13 +6,13 @@
 #    By: khelegbe <khelegbe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 17:16:42 by khelegbe          #+#    #+#              #
-#    Updated: 2021/03/09 17:06:11 by khelegbe         ###   ########.fr        #
+#    Updated: 2021/03/16 17:01:36 by khelegbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	clang
 
-FLAGS		=	-Wall -Wextra -Werror -g
+FLAGS		=	-Wall -Wextra -Werror
 
 NAME		=	libftprintf.a
 
@@ -25,7 +25,6 @@ SRCS		=	srcs/ft_printf.c \
 				srcs/ft_exec_x.c \
 				srcs/ft_convert_hex.c \
 				srcs/ft_utils.c
-
 
 HEADERS		=	-I include -I libft
 
@@ -44,7 +43,7 @@ $(NAME) 	:	${OBJECTS}
 
 debug		:
 				@make
-				clang main.c libftprintf.a -I include -I libft -g
+				clang main.c libftprintf.a -I include -I libft
 				./a.out
 
 clean:
@@ -52,11 +51,9 @@ clean:
 				@rm -rf ${OBJECTS}
 				@printf "\033[92mclean done\n\033[0m"
 
-
 fclean:			clean
 				@make -C libft fclean
 				@rm -rf $(NAME)
-
 
 re:				fclean all
 
